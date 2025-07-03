@@ -1,0 +1,66 @@
+{
+  "name": "@unchainedshop/unchained-app",
+  "description": "Unchained Engine Starter",
+  "private": true,
+  "version": "4.0.0-rc.3",
+  "license": "EUPL-1.2",
+  "type": "module",
+  "homepage": "https://unchained.shop",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unchainedshop/unchained.git"
+  },
+  "contributors": [
+    "Vedran Rudelj <vedran@unchained.shop> (https://unchained.shop)",
+    "Pascal Kaufmann <pascal@unchained.shop> (https://unchained.shop)",
+    "Marco Wettstein <maw@panter.ch>",
+    "Simon Emanuel Schmid <simon@unchained.shop> (https://unchained.shop)",
+    "Mikael Araya Mengistu <mikaeln@unchained.shop> (https://unchained.shop)"
+  ],
+  "bugs": {
+    "url": "https://github.com/unchainedshop/unchained/issues"
+  },
+  "engineStrict": true,
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=10.0.0"
+  },
+  "scripts": {
+    "lint": "prettier -w .",
+    "clean": "tsc -b --clean",
+    "build": "tsc -b",
+    "start": "node --no-warnings --env-file .env.defaults --env-file-if-exists=.env --import ./load_env.js lib/boot.js",
+    "dev": "node --no-warnings --env-file .env.defaults --env-file-if-exists=.env --import ./load_env.js --loader ts-node/esm --watch src/boot.ts",
+    "integration-test": "node --no-warnings --env-file .env.defaults --env-file ../../.env.tests --env-file-if-exists=../../.env --import ./load_env.js --loader ts-node/esm --watch src/boot.ts"
+  },
+  "dependencies": {
+    "@fastify/cookie": "^11.0.2",
+    "@fastify/multipart": "^9.0.3",
+    "@fastify/session": "^11.1.0",
+    "@scure/bip32": "^1.7.0",
+    "@scure/btc-signer": "^1.8.1",
+    "@unchainedshop/admin-ui": "^4.0.13",
+    "@unchainedshop/api": "^4.0.0-rc.3",
+    "@unchainedshop/core-delivery": "^4.0.0-rc.3",
+    "@unchainedshop/core-payment": "^4.0.0-rc.3",
+    "@unchainedshop/platform": "^4.0.0-rc.3",
+    "@unchainedshop/plugins": "^4.0.0-rc.3",
+    "@unchainedshop/ticketing": "^4.0.0-rc.3",
+    "fastify": "^5.4.0",
+    "graphql": "^16.11.0",
+    "graphql-yoga": "^5.14.0",
+    "nodemailer": "^7.0.4",
+    "open": "^10.1.2",
+    "postfinancecheckout": "^4.7.0",
+    "stripe": "^18.3.0",
+    "web-push": "^3.6.7",
+    "xml-js": "^1.6.11"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.10",
+    "mongodb-memory-server": "^10.1.4",
+    "prettier": "^3.6.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
