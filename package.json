@@ -39,7 +39,7 @@
     "@fastify/session": "^11.1.0",
     "@scure/bip32": "^1.7.0",
     "@scure/btc-signer": "^1.8.1",
-    "@unchainedshop/admin-ui": "^4.0.14",
+    "@unchainedshop/admin-ui": "^4.0.15",
     "@unchainedshop/api": "^4.0.0-rc.3",
     "@unchainedshop/core-delivery": "^4.0.0-rc.3",
     "@unchainedshop/core-payment": "^4.0.0-rc.3",
