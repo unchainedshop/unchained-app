@@ -45,7 +45,7 @@
     "@unchainedshop/platform": "canary",
     "@unchainedshop/plugins": "canary",
     "@unchainedshop/ticketing": "canary",
-    "@unchainedshop/admin-ui": "^4.0.25",
+    "@unchainedshop/admin-ui": "^4.0.27",
     "fastify": "^5.4.0",
     "file-type": "^21.0.0",
     "graphql": "^16.11.0",
