@@ -51,15 +51,15 @@
     "graphql-yoga": "^5.15.1",
     "nodemailer": "^7.0.5",
     "open": "^10.2.0",
-    "stripe": "^18.3.0",
+    "stripe": "^18.4.0",
     "web-push": "^3.6.7",
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
-    "@types/node": "^24.1.0",
-    "mongodb-memory-server": "^10.1.4",
+    "@types/node": "^24.2.0",
+    "mongodb-memory-server": "^10.2.0",
     "prettier": "^3.6.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.2"
   }
 }
