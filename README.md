@@ -15,28 +15,24 @@ A powerful e-commerce engine built with Node.js, TypeScript, and GraphQL. This i
 - [Development](#development)
 - [Contributing](#contributing)
 
-
-
 ## Overview
 
 This starter project combines the [**Unchained Engine**](https://github.com/unchainedshop/unchained) — a modular, high-performance headless e-commerce backend — with the **Unchained Admin UI**, a powerful web-based interface for managing your store.
 
 Together, they provide a complete out-of-the-box solution for building and running scalable e-commerce applications using modern technologies like Fastify, GraphQL, TypeScript, and Docker.
 
-
 ## Features
 
-- 🚀 **GraphQL API** - Modern GraphQL API with GraphQL Yoga  
-- 🏪 **Complete E-commerce** - Products, orders, payments, delivery, and user management  
-- 💳 **Payment Integration** - Built-in Stripe integration and extensible payment plugins  
-- 📦 **Delivery Management** - Flexible delivery and shipping options  
-- 🎫 **Ticketing System** - Event and ticket management capabilities  
-- 🧠 **Built-in LLM Chat Support** - Easily enable AI-powered chat assistants via the Admin UI using providers like OpenAI or Anthropic  
-- 🔧 **Admin UI** - Built-in administration interface ([admin-ui](https://github.com/unchainedshop/admin-ui))  
-- 🐳 **Docker Ready** - Production-ready Docker configuration  
-- 🔒 **Security** - Session management, cookies, and secure authentication  
-- ⚡ **Performance** - Built with Fastify for high performance  
-
+- 🚀 **GraphQL API** - Modern GraphQL API with GraphQL Yoga
+- 🏪 **Complete E-commerce** - Products, orders, payments, delivery, and user management
+- 💳 **Payment Integration** - Built-in Stripe integration and extensible payment plugins
+- 📦 **Delivery Management** - Flexible delivery and shipping options
+- 🎫 **Ticketing System** - Event and ticket management capabilities
+- 🧠 **Built-in LLM Chat Support** - Easily enable AI-powered chat assistants via the Admin UI using providers like OpenAI or Anthropic
+- 🔧 **Admin UI** - Built-in administration interface ([admin-ui](https://github.com/unchainedshop/admin-ui))
+- 🐳 **Docker Ready** - Production-ready Docker configuration
+- 🔒 **Security** - Session management, cookies, and secure authentication
+- ⚡ **Performance** - Built with Fastify for high performance
 
 ## Tech Stack
 
@@ -55,17 +51,20 @@ Together, they provide a complete out-of-the-box solution for building and runni
 ## Quick Start
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/unchainedshop/unchained.git
    cd unchained-app
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Set up environment variables**
+
    ```bash
    cp .env.defaults .env
    # Edit .env with your configuration
@@ -127,7 +126,7 @@ You can manage your store using the built-in admin tools for products, orders, p
 
 Example integration using `@unchainedshop/admin-ui/fastify`:
 
-```ts
+````ts
 import { connectChat, fastifyRouter } from "@unchainedshop/admin-ui/fastify";
 import { anthropic } from '@ai-sdk/anthropic';
 import { openai } from '@ai-sdk/openai';
@@ -156,7 +155,7 @@ docker build -t unchained-app .
 
 # Run the container
 docker run -p 4010:4010 unchained-app
-```
+````
 
 ### Health Check
 
@@ -179,10 +178,12 @@ The application uses a modular architecture with the following key components:
 ## Configuration
 
 Environment variables are loaded from:
+
 1. `.env.defaults` (default values)
 2. `.env` (local overrides)
 
 Key configuration options:
+
 - `PORT` - Server port (default: 3000)
 - `NODE_ENV` - Environment (development/production)
 - `MONGODB_URL` - MongoDB connection string
@@ -190,6 +191,7 @@ Key configuration options:
 ## Plugins
 
 The starter includes all default plugins for:
+
 - Payment processing (Stripe, etc.)
 - Delivery providers
 - User authentication
@@ -201,6 +203,7 @@ The starter includes all default plugins for:
 ### TypeScript Configuration
 
 The project uses modern TypeScript with:
+
 - ES modules
 - NodeNext module resolution
 - Declaration generation
@@ -219,6 +222,7 @@ package.json        # Dependencies and scripts
 ## Contributing
 
 This project is part of the larger Unchained ecosystem. For contribution guidelines, please visit:
+
 - [GitHub Repository](https://github.com/unchainedshop/unchained)
 - [Issues](https://github.com/unchainedshop/unchained/issues)
 

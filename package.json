@@ -26,12 +26,9 @@
     "npm": ">=10.0.0"
   },
   "scripts": {
-    "lint": "prettier -w .",
-    "clean": "tsc -b --clean",
-    "build": "tsc -b",
-    "start": "node --no-warnings --env-file .env.defaults --env-file-if-exists=.env --import ./load_env.js lib/boot.js",
-    "dev": "node --no-warnings --env-file .env.defaults --env-file-if-exists=.env --import ./load_env.js --loader ts-node/esm --watch src/boot.ts",
-    "integration-test": "node --no-warnings --env-file .env.defaults --env-file ../../.env.tests --env-file-if-exists=../../.env --import ./load_env.js --loader ts-node/esm --watch src/boot.ts"
+    "lint": "prettier -w . && tsc --noEmit",
+    "start": "node --no-warnings --env-file .env.defaults --env-file-if-exists=.env --import ./load_env.js ./src/boot.ts",
+    "dev": "node --no-warnings --env-file .env.defaults --env-file-if-exists=.env --import ./load_env.js --watch ./src/boot.ts"
   },
   "dependencies": {
     "@fastify/cookie": "^11.0.2",
@@ -59,7 +56,6 @@
     "@types/node": "^24.2.0",
     "mongodb-memory-server": "^10.2.0",
     "prettier": "^3.6.2",
-    "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
   }
 }

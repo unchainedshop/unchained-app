@@ -1,25 +1,19 @@
 {
-  "ts-node": {
-    // It is faster to skip typechecking.
-    // Remove if you want ts-node to do typechecking.
-    "transpileOnly": true,
-    "esm": true
-  },
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "declaration": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "rewriteRelativeImportExtensions": true,
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true,
+    "allowImportingTsExtensions": true,
     "lib": ["esnext"],
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "outDir": "./lib",
-    "preserveWatchOutput": true,
+    "module": "nodenext",
+    "outDir": "lib",
     "skipLibCheck": true,
     "sourceMap": true,
     "target": "esnext",
-    "declarationDir": "./lib",
-    "rootDir": "./src"
+    "types": ["node"],
+    "baseUrl": "." // This must be specified if "paths" is.
   },
+  "include": ["./**/*.ts"],
   "exclude": ["node_modules", "lib"]
 }
