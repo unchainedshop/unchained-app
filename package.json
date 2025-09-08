@@ -31,6 +31,7 @@
     "dev": "node --no-warnings --env-file .env.defaults --env-file-if-exists=.env --import ./load_env.js --watch ./src/boot.ts"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^2.0.26",
     "@fastify/cookie": "^11.0.2",
     "@fastify/multipart": "^9.2.1",
     "@fastify/session": "^11.1.0",
