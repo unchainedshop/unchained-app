@@ -3,11 +3,13 @@ import { startPlatform } from "@unchainedshop/platform";
 import {
   connect,
   unchainedLogger,
+  connectChat,
+  fastifyRouter,
 } from "@unchainedshop/api/lib/fastify/index.js";
 import defaultModules from "@unchainedshop/plugins/presets/all.js";
 import connectDefaultPluginsToFastify from "@unchainedshop/plugins/presets/all-fastify.js";
-import { connectChat, fastifyRouter } from '@unchainedshop/admin-ui/fastify';
-import { openai } from '@ai-sdk/openai';
+import { openai } from "@ai-sdk/openai";
+import { anthropic } from "@ai-sdk/anthropic";
 
 const fastify = Fastify({
   loggerInstance: unchainedLogger("fastify"),
@@ -30,10 +32,10 @@ try {
   // This is an example of an AI provider, you can configure OPENAI_API_KEY through railway or locally to enable the Copilot chat features.
   if (process.env.OPENAI_API_KEY) {
     connectChat(fastify, {
-        model: openai('gpt-4-turbo'),
-        imageGenerationTool: { model: openai.image('gpt-image-1') },
+      model: anthropic("claude-3-7-sonnet-20250219"),
+      imageGenerationTool: { model: openai.image("gpt-image-1") },
     });
-}
+  }
 
   fastify.register(fastifyRouter, {
     prefix: "/",
