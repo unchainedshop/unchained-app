@@ -32,7 +32,7 @@ try {
   // This is an example of an AI provider, you can configure OPENAI_API_KEY through railway or locally to enable the Copilot chat features.
   if (process.env.OPENAI_API_KEY) {
     connectChat(fastify, {
-      model: anthropic("claude-3-7-sonnet-20250219"),
+      model: anthropic("claude-sonnet-4-5-20250929"),
       imageGenerationTool: { model: openai.image("gpt-image-1") },
     });
   }
