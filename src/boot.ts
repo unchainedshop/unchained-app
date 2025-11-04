@@ -1,13 +1,8 @@
 import Fastify from "fastify";
 import { startPlatform } from "@unchainedshop/platform";
-import {
-  connect,
-  unchainedLogger,
-  connectChat,
-  fastifyRouter,
-} from "@unchainedshop/api/lib/fastify/index.js";
+import { connect, unchainedLogger } from "@unchainedshop/api/fastify";
 import defaultModules from "@unchainedshop/plugins/presets/all.js";
-import connectDefaultPluginsToFastify from "@unchainedshop/plugins/presets/all-fastify.js";
+import initPluginMiddlewares from "@unchainedshop/plugins/presets/all-fastify.js";
 import { openai } from "@ai-sdk/openai";
 import { anthropic } from "@ai-sdk/anthropic";
 
@@ -25,20 +20,16 @@ try {
 
   connect(fastify, platform, {
     allowRemoteToLocalhostSecureCookies: process.env.NODE_ENV !== "production",
-  });
-
-  connectDefaultPluginsToFastify(fastify, platform);
-
-  // This is an example of an AI provider, you can configure OPENAI_API_KEY through railway or locally to enable the Copilot chat features.
-  if (process.env.OPENAI_API_KEY) {
-    connectChat(fastify, {
-      model: anthropic("claude-sonnet-4-5-20250929"),
-      imageGenerationTool: { model: openai.image("gpt-image-1") },
-    });
-  }
-
-  fastify.register(fastifyRouter, {
-    prefix: "/",
+    initPluginMiddlewares,
+    adminUI: true,
+    chat: process.env.ANTHROPIC_API_KEY
+      ? {
+          model: anthropic("claude-sonnet-4-5-20250929"),
+          imageGenerationTool: process.env.OPENAI_API_KEY
+            ? { model: openai.image("gpt-image-1") }
+            : undefined,
+        }
+      : undefined,
   });
 
   await fastify.listen({
