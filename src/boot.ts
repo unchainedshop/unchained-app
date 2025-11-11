@@ -15,7 +15,6 @@ const fastify = Fastify({
 try {
   const platform = await startPlatform({
     modules: defaultModules,
-    healthCheckEndpoint: "/.well-known/yoga/server-health",
   });
 
   connect(fastify, platform, {
