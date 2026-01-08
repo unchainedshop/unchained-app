@@ -18,6 +18,7 @@ try {
   });
 
   connect(fastify, platform, {
+    allowRemoteToLocalhostSecureCookies: process.env.NODE_ENV !== "production",
     initPluginMiddlewares,
     adminUI: true,
     chat: process.env.ANTHROPIC_API_KEY
