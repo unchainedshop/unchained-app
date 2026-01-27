@@ -31,6 +31,23 @@ try {
       : undefined,
   });
 
+  fastify.get("/.well-known/health", async () => {
+    return { healthy: true };
+  });
+
+  fastify.get("/.well-known/ready", async (req, reply) => {
+    const result = await fetch(`http://localhost:${process.env.PORT ? parseInt(process.env.PORT) : 3000}${process.env.UNCHAINED_GRAPHQL_ENDPOINT || '/graphql'}`, {
+      method: "POST",
+      body: JSON.stringify({ query: "{ shopInfo { _id, country2 { _id } } }" }),
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await result.json();
+    if (data?.errors?.length === 0) {
+      return { ready: true };
+    }
+    return reply.code(503).send({ ready: false });
+  });
+
   await fastify.listen({
     host: "::",
     port: process.env.PORT ? parseInt(process.env.PORT) : 3000,
