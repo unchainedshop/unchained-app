@@ -36,7 +36,7 @@ try {
   });
 
   fastify.get("/.well-known/ready", async (req, reply) => {
-    const result = await fetch(`http://localhost:${process.env.PORT ? parseInt(process.env.PORT) : 3000}${process.env.UNCHAINED_GRAPHQL_ENDPOINT || '/graphql'}`, {
+    const result = await fetch(`http://127.0.0.1:${process.env.PORT ? parseInt(process.env.PORT) : 3000}${process.env.GRAPHQL_API_PATH || '/graphql'}`, {
       method: "POST",
       body: JSON.stringify({ query: "{ shopInfo { _id, country2 { _id } } }" }),
       headers: { "Content-Type": "application/json" },

@@ -13,7 +13,7 @@ RUN echo "${GIT_COMMIT}" > /webapp/version.txt && npm ci
 COPY . /webapp/
 
 HEALTHCHECK --start-period=10s --interval=20s --timeout=2s \
-  CMD wget --spider --header 'content-type: application/json' http://0.0.0.0:${PORT}/.well-known/health
+  CMD wget --spider --header 'content-type: application/json' http://127.0.0.1:${PORT}/.well-known/health
 
 EXPOSE 3000
 
