@@ -4,7 +4,7 @@ The official starter template for [Unchained Engine](https://github.com/unchaine
 
 ## Prerequisites
 
-- Node.js >= 22.9 (24 LTS recommended — runs TypeScript natively)
+- Node.js >= 24 (26 recommended — runs TypeScript natively)
 - npm >= 10
 - MongoDB — optional in development: without `MONGO_URL`, a local `mongod` is spawned automatically (via `mongodb-memory-server`) storing data in `./.db`
 

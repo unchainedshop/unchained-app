@@ -11,8 +11,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "target": "esnext",
-    "types": ["node"],
-    "baseUrl": "." // This must be specified if "paths" is.
+    "types": ["node"]
   },
   "include": ["./**/*.ts"],
   "exclude": ["node_modules", "lib"]

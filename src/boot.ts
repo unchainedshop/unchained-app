@@ -50,6 +50,32 @@ try {
     return reply.code(503).send({ ready: false });
   });
 
+  // Graceful shutdown: stop accepting connections and run plugin teardown
+  // (fastify onClose hooks) before exiting, so in-flight requests drain and
+  // long-lived connections (e.g. a Redis/EventBridge emit adapter) close cleanly.
+  let shuttingDown = false;
+  const shutdown = async (signal: string) => {
+    if (shuttingDown) return;
+    shuttingDown = true;
+    fastify.log.info(`Received ${signal}, shutting down gracefully`);
+    // Safety net: force-exit if teardown hangs past the grace period.
+    const forceExit = setTimeout(() => {
+      fastify.log.error("Graceful shutdown timed out, forcing exit");
+      process.exit(1);
+    }, 10_000).unref();
+    try {
+      await fastify.close();
+      clearTimeout(forceExit);
+      process.exit(0);
+    } catch (err) {
+      fastify.log.error(err);
+      process.exit(1);
+    }
+  };
+  for (const signal of ["SIGTERM", "SIGINT"] as const) {
+    process.once(signal, () => shutdown(signal));
+  }
+
   await fastify.listen({
     host: "::",
     port: process.env.PORT ? parseInt(process.env.PORT) : 3000,
