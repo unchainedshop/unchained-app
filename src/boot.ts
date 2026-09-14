@@ -2,6 +2,7 @@ import Fastify from "fastify";
 import { startPlatform } from "@unchainedshop/platform";
 import { connect, unchainedLogger } from "@unchainedshop/api/fastify";
 import { registerAllPlugins } from "@unchainedshop/plugins/presets/all";
+import "./coupons.ts";
 import { openai } from "@ai-sdk/openai";
 import { anthropic } from "@ai-sdk/anthropic";
 
