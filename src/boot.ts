@@ -18,7 +18,7 @@ try {
 
   const platform = await startPlatform({});
 
-  connect(fastify, platform, {
+  await connect(fastify, platform, {
     allowRemoteToLocalhostSecureCookies: process.env.NODE_ENV !== "production",
     adminUI: true,
     chat: process.env.ANTHROPIC_API_KEY
