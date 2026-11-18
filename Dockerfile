@@ -1,4 +1,4 @@
-FROM node:26-alpine AS bundler
+FROM node:26.13.1-alpine3.24 AS bundler
 
 # Install app dependencies
 RUN mkdir -p /webapp
