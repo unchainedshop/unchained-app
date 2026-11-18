@@ -4,7 +4,7 @@ The official starter template for [Unchained Engine](https://github.com/unchaine
 
 ## Prerequisites
 
-- Node.js >= 24 (26 recommended — runs TypeScript natively)
+- Node.js >= 26.12.1 (runs TypeScript natively)
 - npm >= 10
 - MongoDB — optional in development: without `MONGO_URL`, a local `mongod` is spawned automatically (via `mongodb-memory-server`) storing data in `./.db`
 
@@ -36,7 +36,7 @@ For a frontend, use the official Next.js storefront starter: [unchained-storefro
 The `chat` option of `connect()` enables the Admin UI Copilot, backed by the engine's built-in MCP server at `/mcp`. It activates when `ANTHROPIC_API_KEY` is set; image generation additionally requires `OPENAI_API_KEY` (see `src/boot.ts`):
 
 ```ts
-connect(fastify, platform, {
+await connect(fastify, platform, {
   adminUI: true,
   chat: process.env.ANTHROPIC_API_KEY
     ? {
