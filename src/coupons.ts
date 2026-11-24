@@ -1,4 +1,4 @@
-import { pluginRegistry, OrderDiscountAdapter } from '@unchainedshop/core';
+import { OrderDiscountDirector, OrderDiscountAdapter } from '@unchainedshop/core';
 
 type Coupon = {
   code: string;
@@ -45,9 +45,6 @@ const COUPONS: Record<string, Coupon> = {
   },
 };
 
-pluginRegistry.register({
-  key: 'shop.unchained.discount.coupons',
-  label: 'Coupon Codes',
-  version: '1.0.0',
-  adapters: Object.entries(COUPONS).map(([key, coupon]) => makeAdapter(key, coupon)),
-});
+for (const [key, coupon] of Object.entries(COUPONS)) {
+  OrderDiscountDirector.registerAdapter(makeAdapter(key, coupon));
+}
