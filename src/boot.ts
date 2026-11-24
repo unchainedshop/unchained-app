@@ -1,8 +1,7 @@
 import Fastify from "fastify";
 import { startPlatform } from "@unchainedshop/platform";
 import { connect, unchainedLogger } from "@unchainedshop/api/fastify";
-import defaultPluginsModules from "@unchainedshop/plugins/presets/all.js";
-import initDefaultPluginMiddlewares from "@unchainedshop/plugins/presets/all-fastify.js";
+import { registerAllPlugins } from "@unchainedshop/plugins/presets/all";
 import "./coupons.ts";
 import { openai } from "@ai-sdk/openai";
 import { anthropic } from "@ai-sdk/anthropic";
@@ -15,28 +14,20 @@ const fastify = Fastify({
 
 try {
   // Plugins self-register their modules and HTTP routes; call before startPlatform
+  registerAllPlugins();
 
-
-  const platform = await startPlatform({
-    modules: {
-      ...defaultPluginsModules,
-    }
-  });
+  const platform = await startPlatform({});
 
   await connect(fastify, platform, {
     allowRemoteToLocalhostSecureCookies: process.env.NODE_ENV !== "production",
     adminUI: true,
-    initPluginMiddlewares: (expressApp, { unchainedAPI }) => {
-      initDefaultPluginMiddlewares(expressApp, { unchainedAPI });
-
-    },
     chat: process.env.ANTHROPIC_API_KEY
       ? {
-        model: anthropic("claude-sonnet-5"),
-        imageGenerationTool: process.env.OPENAI_API_KEY
-          ? { model: openai.imageModel("gpt-image-1") }
-          : undefined,
-      }
+          model: anthropic("claude-sonnet-5"),
+          imageGenerationTool: process.env.OPENAI_API_KEY
+            ? { model: openai.imageModel("gpt-image-1") }
+            : undefined,
+        }
       : undefined,
   });
 
